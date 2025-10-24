@@ -1,0 +1,75 @@
+<!-- usuarios.html -->
+<section class="usuarios-section">
+  <h2 class="mb-4 text-primary fw-semibold">Gestión de Usuarios</h2>
+
+  <!-- FORMULARIO USUARIOS -->
+  <div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Registrar / Editar Usuario</h5>
+      <form id="usuarioForm" class="row g-3">
+        <input type="hidden" id="usuarioId">
+
+        <div class="col-md-4">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" id="nombre" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" class="form-control" id="correo" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="rol" class="form-label">Rol</label>
+          <select id="rol" class="form-select" required>
+            <option value="vendedor">Vendedor</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="estado" class="form-label">Estado</label>
+          <select id="estado" class="form-select" required>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary px-4">
+            <i class="fa-solid fa-floppy-disk me-2"></i> Guardar Usuario
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TABLA DE USUARIOS -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Lista de Usuarios</h5>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center" id="tablaUsuarios">
+          <thead class="table-primary">
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Fecha Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Aquí se insertarán los usuarios con JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

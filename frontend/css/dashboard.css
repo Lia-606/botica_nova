@@ -1,0 +1,87 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e9f1ff, #f8fbff);
+}
+
+/* === CONTENEDOR GENERAL === */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 230px;
+  background: linear-gradient(180deg, #274874, #3a6ff7);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+}
+
+.sidebar-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.menu .nav-link {
+  color: #cdd9ff;
+  padding: 12px 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.menu .nav-link:hover,
+.menu .nav-link.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-left: 4px solid #8cc9ff;
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+  flex: 1;
+  background: #ffffff;
+  border-top-left-radius: 20px;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.05);
+  overflow-y: auto;
+}
+
+h2 {
+  color: #2b4c7e;
+}
+
+.text-primary {
+  color: #3a6ff7 !important;
+}
+
+/* === LOGOUT BUTTON === */
+.btn-danger {
+  background-color: #c62828;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100px;
+  }
+
+  .menu .nav-link {
+    font-size: 0;
+    justify-content: center;
+  }
+
+  .menu .nav-link i {
+    font-size: 1.2rem;
+  }
+}
