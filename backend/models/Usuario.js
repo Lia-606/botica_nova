@@ -6,15 +6,13 @@ const usuarioSchema = new mongoose.Schema({
   correo: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   rol: { type: String, enum: ['admin', 'vendedor'], default: 'vendedor' },
-  fechaRegistro: { type: Date, default: Date.now }
+  fechaRegistro: { type: Date, default: Date.now },
+  estado: { type: String, enum: ['activo', 'inactivo'], default: 'activo' },
 });
 
-// 🔒 Encriptar contraseña antes de guardar (solo si no está ya encriptada)
+// 🔒 Encriptar contraseña antes de guardar
 usuarioSchema.pre('save', async function (next) {
-  // Si la contraseña ya parece encriptada (empieza con $2a o $2b), no volver a encriptar
-  if (this.password.startsWith('$2a$') || this.password.startsWith('$2b$')) {
-    return next();
-  }
+  if (this.password.startsWith('$2a$') || this.password.startsWith('$2b$')) return next();
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();
