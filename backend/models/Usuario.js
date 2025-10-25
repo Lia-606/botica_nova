@@ -10,7 +10,7 @@ const usuarioSchema = new mongoose.Schema({
   estado: { type: String, enum: ['activo', 'inactivo'], default: 'activo' },
 });
 
-// 🔒 Encriptar contraseña antes de guardar
+// Encriptar contraseña antes de guardar
 usuarioSchema.pre('save', async function (next) {
   if (this.password.startsWith('$2a$') || this.password.startsWith('$2b$')) return next();
   const salt = await bcrypt.genSalt(10);
@@ -18,7 +18,7 @@ usuarioSchema.pre('save', async function (next) {
   next();
 });
 
-// 🧩 Método para verificar contraseña
+// Método para verificar contraseña
 usuarioSchema.methods.verificarPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

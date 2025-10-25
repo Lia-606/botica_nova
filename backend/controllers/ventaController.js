@@ -47,7 +47,6 @@ const crearVenta = async (req, res) => {
 
     res.status(201).json(venta);
   } catch (error) {
-    console.error('Error en crearVenta:', error); // <-- esto mostrará el error real
     res.status(500).json({ msg: 'Error al crear la venta', error: error.message });
   }
 };

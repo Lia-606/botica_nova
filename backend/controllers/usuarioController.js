@@ -1,16 +1,16 @@
 const Usuario = require('../models/Usuario');
 const jwt = require('jsonwebtoken');
 
-// 🧩 Función para crear un token JWT
+// Función para crear un token JWT
 const crearToken = (usuario) => {
   return jwt.sign(
     { id: usuario._id, rol: usuario.rol },
     process.env.JWT_SECRET,
-    { expiresIn: '1h' } // el token expira en 1 hora
+    { expiresIn: '1h' } 
   );
 };
 
-// ✅ Crear usuario (solo el admin puede hacerlo)
+// Crear usuario 
 exports.crearUsuario = async (req, res) => {
   try {
     const { nombre, correo, password, rol } = req.body;
@@ -32,7 +32,7 @@ exports.crearUsuario = async (req, res) => {
   }
 };
 
-// ✅ Login (versión segura)
+// login (versión segura)
 exports.login = async (req, res) => {
   try {
     const { correo, password } = req.body;
@@ -49,10 +49,10 @@ exports.login = async (req, res) => {
 
     const token = crearToken(usuario);
 
-    // 🔒 Guardar token en cookie segura
+    //  Guardar token en cookie segura
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false,   // ⚠️ cámbialo a true si usas HTTPS
+      secure: false,   
       sameSite: 'Lax',
       maxAge: 60 * 60 * 1000, // 1 hora
     });
@@ -70,7 +70,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// ✅ Verificar sesión (ahora devuelve nombre + rol)
+//  Verificar sesión (ahora devuelve nombre + rol)
 exports.verificarSesion = async (req, res) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ message: 'No autenticado' });
@@ -88,11 +88,11 @@ exports.verificarSesion = async (req, res) => {
   }
 };
 
-// ✅ Cerrar sesión (borrado correcto de cookie)
+// Cerrar sesión (borrado correcto de cookie)
 exports.logout = (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: false,  // ⚠️ cámbialo a true si usas HTTPS
+    secure: false,  //  cámbialo a true si usas HTTPS
     sameSite: 'Lax'
   });
   res.json({ message: 'Sesión cerrada correctamente' });

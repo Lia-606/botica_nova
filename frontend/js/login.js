@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value.trim();
 
   if (!correo || !password) {
-    alert('⚠️ Por favor, complete todos los campos.');
+    alert(' Por favor, complete todos los campos.');
     return;
   }
 
@@ -21,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     if (response.ok && data.message === 'Inicio de sesión exitoso') {
       alert('Inicio de sesión exitoso');
-      // 🔒 Redirige al dashboard
+      //  Redirige al dashboard
       window.location.href = 'dashboard.html';
     } else {
       alert(` ${data.message || 'Credenciales inválidas'}`);

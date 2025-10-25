@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ventaSchema = new mongoose.Schema({
-  cliente: { type: String, required: true }, // NUEVO CAMPO
+  cliente: { type: String, required: true }, 
   producto: { type: mongoose.Schema.Types.ObjectId, ref: 'Producto', required: true },
   vendedor: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario', required: true },
   cantidad: { type: Number, required: true },

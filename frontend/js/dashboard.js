@@ -1,4 +1,4 @@
-// ✅ dashboard.js — versión integrada con carga dinámica de módulos
+// dashboard.js — versión integrada con carga dinámica de módulos
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // 🧩 Verificar sesión activa
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// 📦 Navegación entre módulos
+//  Navegación entre módulos
 const navLinks = document.querySelectorAll('.nav-link');
 const vistaActiva = document.getElementById('vistaActiva');
 
@@ -60,6 +60,35 @@ navLinks.forEach(link => {
   });
 });
 
+async function actualizarContadorAlertas() {
+  try {
+    const res = await fetch("http://localhost:5000/api/alertas", {
+      credentials: "include"
+    });
+    if (!res.ok) throw new Error(`Error ${res.status}`);
+    const alertas = await res.json();
+
+    const contador = document.getElementById("contadorAlertas");
+    const cantidad = alertas.length;
+
+    if (cantidad > 0) {
+      contador.textContent = cantidad;
+      contador.style.display = "inline-block"; // Mostrar
+    } else {
+      contador.style.display = "none"; // Ocultar si 0
+    }
+  } catch (err) {
+    console.error("Error al actualizar contador de alertas:", err);
+  }
+}
+
+// Llamar al cargar dashboard
+document.addEventListener("DOMContentLoaded", async () => {
+  // ... tu código existente de sesión
+  await actualizarContadorAlertas();
+});
+
+
 async function cargarModulo(modulo) {
   try {
     const vistaActiva = document.getElementById("vistaActiva");
@@ -67,41 +96,44 @@ async function cargarModulo(modulo) {
 
     const modulosPermitidosVendedor = ["inicio", "inventario", "ventas", "alertas"];
 
-    // 🔒 Control de acceso
+    //  Control de acceso
     if (rol === "vendedor" && !modulosPermitidosVendedor.includes(modulo)) {
       vistaActiva.innerHTML = `
         <div class="alert alert-danger text-center mt-3" role="alert">
-          🚫 Acceso denegado: No tienes permisos para acceder a este módulo.
+          Acceso denegado: No tienes permisos para acceder a este módulo.
         </div>`;
       return;
     }
 
-    // 📥 Cargar el HTML del módulo
+    //  Cargar el HTML del módulo
     const rutaHTML = `${modulo}.html`;
     const res = await fetch(rutaHTML);
     if (!res.ok) throw new Error(`No se encontró el módulo "${modulo}"`);
     const html = await res.text();
     vistaActiva.innerHTML = html;
 
-    // 🧩 Cargar el JS del módulo si existe
-    const rutaJS = `/js/${modulo}.js`;
+    //  Cargar el JS del módulo si existe
+const rutaJS = `/js/${modulo}.js`;
 
-    try {
-      // Importa módulos ES con funciones init (usuarios, inventario, etc.)
-      const moduloJS = await import(rutaJS);
+try {
+  const moduloJS = await import(rutaJS);
 
-      // Llamar la función correcta según el módulo
-      if (modulo === "usuarios" && moduloJS.initUsuariosModule) {
-        moduloJS.initUsuariosModule();
-      } else if (modulo === "inventario" && moduloJS.initInventarioModule) {
-        moduloJS.initInventarioModule();
-      } else if (modulo === "ventas" && moduloJS.initVentasModule) {
-        moduloJS.initVentasModule(); // <-- AQUÍ se agrega ventas
-      } else if (moduloJS.initModule) {
-        // Por si en el futuro otros módulos tienen una función genérica initModule()
-        moduloJS.initModule();
-      }
-    } catch (err) {
+  if (modulo === "usuarios" && moduloJS.initUsuariosModule) {
+    moduloJS.initUsuariosModule();
+  } else if (modulo === "inventario" && moduloJS.initInventarioModule) {
+    moduloJS.initInventarioModule();
+  } else if (modulo === "ventas" && moduloJS.initVentasModule) {
+    moduloJS.initVentasModule();
+  } else if (modulo === "alertas" && moduloJS.initAlertasModule) {
+    moduloJS.initAlertasModule();
+  } else if (modulo === "reportes" && moduloJS.initReportesModule) {
+    moduloJS.initReportesModule();
+  } else if (modulo === "inicio" && moduloJS.initInicioModule) {
+    moduloJS.initInicioModule(); // ✅ AÑADIDO AQUÍ
+  } else if (moduloJS.initModule) {
+    moduloJS.initModule();
+  }
+} catch (err) {
       console.warn(`No se pudo importar módulo JS "${modulo}":`, err.message);
 
       // Si no es un módulo ES, intenta cargarlo como script tradicional

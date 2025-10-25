@@ -1,0 +1,33 @@
+<section class="alertas-section">
+  <h2 class="mb-4 text-primary fw-semibold">Alertas de Inventario</h2>
+
+  <!-- Tarjetas resumen -->
+  <div class="row mb-4" id="tarjetasResumen">
+    <!-- Aquí se cargarán las tarjetas dinámicamente -->
+  </div>
+
+  <!-- Tabla de alertas -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Productos con Stock Crítico</h5>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center" id="tablaAlertas">
+          <thead class="table-warning">
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Productos con stock bajo se cargan aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vincular JS específico del módulo -->
+<script type="module" src="js/alertas.js"></script>

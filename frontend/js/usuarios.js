@@ -1,4 +1,4 @@
-// ✅ usuarios.js
+//  usuarios.js
 export async function initUsuariosModule() {
   console.log("🔹 Módulo Usuarios inicializado correctamente");
 
@@ -13,7 +13,7 @@ export async function initUsuariosModule() {
 
   let usuarios = [];
 
-  // 🔹 Listar usuarios
+  //  Listar usuarios
   const listarUsuarios = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/usuarios/listar", { credentials: "include" });
@@ -42,7 +42,7 @@ export async function initUsuariosModule() {
       });
       agregarEventos();
     } catch (err) {
-      console.error("❌ Error al listar usuarios:", err);
+      console.error(" Error al listar usuarios:", err);
     }
   };
 
@@ -110,7 +110,7 @@ export async function initUsuariosModule() {
       usuarioIdInput.value = "";
       listarUsuarios();
     } catch (err) {
-      console.error("❌ Error al guardar usuario:", err);
+      console.error(" Error al guardar usuario:", err);
     }
   });
 

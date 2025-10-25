@@ -1,0 +1,19 @@
+/* Tarjetas de resumen */
+.alertas-section .card {
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.alertas-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Tabla de alertas */
+#tablaAlertas td, #tablaAlertas th {
+  vertical-align: middle;
+}
+
+#tablaAlertas button {
+  min-width: 100px;
+}

@@ -18,16 +18,16 @@ const verificarToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.usuario = decoded; // guarda datos del usuario (id y rol)
+    req.usuario = decoded; 
     next();
   } catch {
     res.status(401).json({ message: 'Token inválido o expirado' });
   }
 };
 
-// ✅ Rutas protegidas y públicas
+//  Rutas protegidas y públicas
 
-// Crear usuario (solo admin)
+
 router.post('/registrar', verificarToken, (req, res, next) => {
   if (req.usuario.rol !== 'admin') {
     return res.status(403).json({ message: 'Solo el administrador puede crear usuarios' });
@@ -44,7 +44,7 @@ router.get('/verificar', verificarSesion);
 // Cerrar sesión
 router.post('/logout', logout);
 
-// ✅ Listar todos los usuarios (solo admin)
+// Listar todos los usuarios (solo admin)
 router.get('/listar', verificarToken, (req, res, next) => {
   if (req.usuario.rol !== 'admin') {
     return res.status(403).json({ message: 'Acceso denegado' });
@@ -52,7 +52,7 @@ router.get('/listar', verificarToken, (req, res, next) => {
   next();
 }, listarUsuarios);
 
-// ✅ Editar usuario (solo admin)
+// Editar usuario (solo admin)
 router.patch('/editar/:id', verificarToken, (req, res, next) => {
   if (req.usuario.rol !== 'admin') {
     return res.status(403).json({ message: 'Acceso denegado' });
@@ -60,7 +60,7 @@ router.patch('/editar/:id', verificarToken, (req, res, next) => {
   next();
 }, editarUsuario);
 
-// ✅ Cambiar estado (solo admin)
+// Cambiar estado (solo admin)
 router.patch('/estado/:id', verificarToken, (req, res, next) => {
   if (req.usuario.rol !== 'admin') {
     return res.status(403).json({ message: 'Acceso denegado' });

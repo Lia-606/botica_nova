@@ -7,7 +7,7 @@ export async function initInventarioModule() {
   let editando = false;
   let productoId = null;
 
-  // 📥 Obtener todos los productos
+  //  Obtener todos los productos
   async function cargarProductos() {
     try {
       const res = await fetch(API_URL);
@@ -29,7 +29,7 @@ export async function initInventarioModule() {
 
       agregarEventos();
     } catch (err) {
-      console.error('❌ Error al cargar productos:', err);
+      console.error(' Error al cargar productos:', err);
     }
   }
 
