@@ -1,0 +1,81 @@
+<section class="ventas-section">
+  <h2 class="mb-4 text-primary fw-semibold">Registrar Venta</h2>
+
+  <!-- FORMULARIO DE REGISTRO DE VENTA -->
+  <div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+      <form id="ventaForm" class="row g-3">
+        <!-- Cliente -->
+        <div class="col-md-4">
+          <label for="cliente" class="form-label">Cliente</label>
+          <input
+            type="text"
+            id="cliente"
+            class="form-control"
+            placeholder="Nombre del cliente"
+            required
+          >
+        </div>
+
+        <!-- Producto con autocompletado -->
+        <div class="col-md-4">
+          <label for="producto" class="form-label">Producto</label>
+          <input
+            type="text"
+            id="producto"
+            class="form-control"
+            placeholder="Escribe el producto"
+            list="productosList"
+            required
+          >
+          <datalist id="productosList">
+            <!-- Productos se cargan dinámicamente -->
+          </datalist>
+        </div>
+
+        <!-- Cantidad -->
+        <div class="col-md-4">
+          <label for="cantidad" class="form-label">Cantidad</label>
+          <input
+            type="number"
+            id="cantidad"
+            class="form-control"
+            min="1"
+            required
+          >
+        </div>
+
+        <!-- Botón Registrar -->
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary px-4">
+            <i class="fa-solid fa-cart-shopping me-2"></i> Registrar Venta
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- LISTA DE VENTAS -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Lista de Ventas</h5>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center" id="tablaVentas">
+          <thead class="table-primary">
+            <tr>
+              <th>Cliente</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Total (S/)</th>
+              <th>Fecha Venta</th>
+              <th>Encargado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Ventas cargadas dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

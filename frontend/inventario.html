@@ -1,0 +1,64 @@
+<!-- inventario.html -->
+<section class="inventario-section">
+  <h2 class="mb-4 text-primary fw-semibold">Gestión de Inventario</h2>
+
+  <!-- FORMULARIO PRODUCTOS -->
+  <div class="card shadow-sm mb-4 border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Registrar / Editar Producto</h5>
+      <form id="productoForm" class="row g-3">
+        <input type="hidden" id="productoId">
+
+        <div class="col-md-4">
+          <label for="nombre" class="form-label">Nombre del producto</label>
+          <input type="text" class="form-control" id="nombre" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="precio" class="form-label">Precio (S/)</label>
+          <input type="number" class="form-control" id="precio" min="0" step="0.01" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="number" class="form-control" id="stock" min="0" required>
+        </div>
+
+        <div class="col-md-12">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea id="descripcion" class="form-control" rows="2" placeholder="Ejemplo: Tabletas para el dolor y fiebre"></textarea>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary px-4">
+            <i class="fa-solid fa-floppy-disk me-2"></i> Guardar Producto
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TABLA DE PRODUCTOS -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title mb-3 fw-semibold text-secondary">Lista de Productos</h5>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle text-center" id="tablaProductos">
+          <thead class="table-primary">
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio (S/)</th>
+              <th>Stock</th>
+              <th>Fecha Registro</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Productos cargados dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

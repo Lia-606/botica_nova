@@ -1,0 +1,49 @@
+/* ==== Estilo del módulo de Ventas ==== */
+.ventas-section {
+  color: #2b4c7e;
+}
+
+.ventas-section .card {
+  border-radius: 10px;
+  border: none;
+}
+
+.ventas-section .card-title {
+  font-weight: 600;
+  color: #2b4c7e;
+}
+
+.ventas-section .btn-success {
+  background-color: #2b4c7e;
+  border: none;
+}
+
+.ventas-section .btn-success:hover {
+  background-color: #1e365c;
+}
+
+/* ==== Tabla ==== */
+#tablaVentas th {
+  color: #ffffff;
+  background-color: #2b4c7e;
+}
+
+#tablaVentas td {
+  vertical-align: middle;
+}
+
+#tablaVentas tbody tr:hover {
+  background-color: #f0f4ff;
+}
+
+/* ==== Formularios ==== */
+#ventaForm .form-label {
+  font-weight: 500;
+  color: #2b4c7e;
+}
+
+#ventaForm button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -86,18 +86,25 @@ async function cargarModulo(modulo) {
     // 🧩 Cargar el JS del módulo si existe
     const rutaJS = `/js/${modulo}.js`;
 
-    if (modulo === "usuarios") {
-      // 🔹 Import dinámico del módulo ES
-      try {
-        const moduloUsuarios = await import(rutaJS);
-        if (moduloUsuarios.initUsuariosModule) {
-          moduloUsuarios.initUsuariosModule();
-        }
-      } catch (err) {
-        console.warn(`No se pudo cargar el módulo JS "${modulo}":`, err.message);
+    try {
+      // Importa módulos ES con funciones init (usuarios, inventario, etc.)
+      const moduloJS = await import(rutaJS);
+
+      // Llamar la función correcta según el módulo
+      if (modulo === "usuarios" && moduloJS.initUsuariosModule) {
+        moduloJS.initUsuariosModule();
+      } else if (modulo === "inventario" && moduloJS.initInventarioModule) {
+        moduloJS.initInventarioModule();
+      } else if (modulo === "ventas" && moduloJS.initVentasModule) {
+        moduloJS.initVentasModule(); // <-- AQUÍ se agrega ventas
+      } else if (moduloJS.initModule) {
+        // Por si en el futuro otros módulos tienen una función genérica initModule()
+        moduloJS.initModule();
       }
-    } else {
-      // 🔹 Scripts no módulo ES
+    } catch (err) {
+      console.warn(`No se pudo importar módulo JS "${modulo}":`, err.message);
+
+      // Si no es un módulo ES, intenta cargarlo como script tradicional
       fetch(rutaJS)
         .then(r => {
           if (!r.ok) throw new Error("No encontrado");

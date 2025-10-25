@@ -111,12 +111,24 @@ exports.listarUsuarios = async (req, res) => {
 exports.editarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    await Usuario.findByIdAndUpdate(id, req.body);
+    const usuario = await Usuario.findById(id);
+    if (!usuario) return res.status(404).json({ message: 'Usuario no encontrado' });
+
+    // Actualizar campos
+    usuario.nombre = req.body.nombre || usuario.nombre;
+    usuario.correo = req.body.correo || usuario.correo;
+    usuario.rol = req.body.rol || usuario.rol;
+    if (req.body.password) usuario.password = req.body.password; // se encripta automáticamente
+    usuario.estado = req.body.estado || usuario.estado;
+
+    await usuario.save(); // 🔒 Esto dispara el pre('save') y encripta la contraseña si se cambió
+
     res.json({ message: 'Usuario actualizado correctamente' });
   } catch (err) {
     res.status(500).json({ message: 'Error al editar usuario', error: err.message });
   }
 };
+
 
 exports.cambiarEstado = async (req, res) => {
   try {

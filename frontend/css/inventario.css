@@ -1,0 +1,35 @@
+/* ==== Estilo del módulo de Inventario ==== */
+.inventario-section {
+  color: #2b4c7e;
+}
+
+.inventario-section .card {
+  border-radius: 10px;
+}
+
+.inventario-section .card-title {
+  font-weight: 600;
+}
+
+.inventario-section .btn-primary {
+  background-color: #2b4c7e;
+  border: none;
+}
+
+.inventario-section .btn-primary:hover {
+  background-color: #1e365c;
+}
+
+.table thead th {
+  color: #ffffff;
+  background-color: #2b4c7e;
+}
+
+.table tbody tr:hover {
+  background-color: #f0f4ff;
+}
+
+label.form-label {
+  font-weight: 500;
+  color: #2b4c7e;
+}

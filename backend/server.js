@@ -15,10 +15,12 @@ conectarDB();
 
 // Middlewares
 app.use(express.json());
-app.use(cookieParser());
+app.use(cookieParser()); // <-- necesario para leer cookies
+
+// Configurar CORS para permitir cookies
 app.use(cors({
-  origin: 'http://localhost:5500', // frontend
-  credentials: true,
+  origin: 'http://localhost:5500', // URL de tu frontend
+  credentials: true,               // importante para enviar cookies
 }));
 
 // Servir archivos estáticos del frontend
